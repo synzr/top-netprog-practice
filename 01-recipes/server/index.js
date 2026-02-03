@@ -32,6 +32,11 @@ function handlePing(id, remote) {
     connections.ttl(id, CONNECTION_TTL);
     server.send(Buffer.from('PONG\n', 'ascii'), remote.port, remote.address);
 }
+
+function handleDisconnect(id, remote) {
+    connections.del(id);
+    server.send(Buffer.from('DISCONNECTED\n', 'ascii'), remote.port, remote.address);
+}
 // #endregion
 
 function sendError(remote, code) {
@@ -78,7 +83,7 @@ server.on("message", (data, remote) => {
     try {
         const command = data[1].toUpperCase().split(" ")[0];
         switch (command) {
-            case "GET": {
+            case "SEARCH": {
                 break;
             }
 
@@ -87,7 +92,7 @@ server.on("message", (data, remote) => {
             }
 
             case "DISCONNECT": {
-                break;
+                return handleDisconnect(connectionId, remote);
             }
         }
     } catch {

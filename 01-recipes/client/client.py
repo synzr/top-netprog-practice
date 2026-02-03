@@ -35,6 +35,18 @@ class Client:
         message = self.__recv()
         self.__id = message.split("\n")[1].split(" ")[1].strip()
 
+    def disconnect(self):
+        if not self.__id:
+            return
+
+        self.__send("DISCONNECT")
+
+        message = self.__recv()
+        if "DISCONNECTED" not in message.upper():
+            raise Exception("Server doesn't let us to disconnect")
+
+        self.__id = None
+
     def ping(self):
         self.__send("PING")
 
@@ -48,6 +60,7 @@ def main():
 
     client.connect()
     client.ping()
+    client.disconnect()
 
 
 if __name__ == "__main__":
