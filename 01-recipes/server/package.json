@@ -12,5 +12,8 @@
     "name": "Серебряков М.А.",
     "url": "https://synzr.space"
   },
-  "packageManager": "pnpm@10.28.2"
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {
+    "node-cache": "^5.1.2"
+  }
 }
