@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "type": "module",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": {
+    "email": "mikhail@synzr.space",
+    "name": "Серебряков М.А.",
+    "url": "https://synzr.space"
+  },
+  "packageManager": "pnpm@10.28.2"
+}
